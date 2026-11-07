@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ekspor Koleksi & Eksemplar (Excel)
  * Plugin URI: https://github.com/gusnaldikrist/slims-export-koleksi-excel
- * Description: Ekspor data bibliografi dan ringkasan eksemplar per judul koleksi ke file Excel (.xlsx) profesional dari menu Reporting.
+ * Description: Ekspor data bibliografi dan ringkasan eksemplar per judul koleksi ke file Excel (.xlsx).
  * Version: 1.0.0
  * Author: Gusnaldi Kristiadi Syah
  * Author URI: https://github.com/gusnaldikrist

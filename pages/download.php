@@ -45,7 +45,12 @@ if (!empty($where['error'])) {
     echo '<script>alert(' . json_encode($where['error']) . '); history.back();</script>';
     exit;
 }
+
 $select = buildSelect($chosen);
+if (empty($select)) {
+    $select = 'b.biblio_id';
+}
+
 $headers = array();
 foreach ($chosen as $token) {
     $headers[] = $REGISTRY[$token]['label'];
@@ -59,7 +64,7 @@ $dsn = 'mysql:host=' . $dbNode['host'] . ';port=' . $dbNode['port'] . ';dbname='
 $pdo = new PDO($dsn, $dbNode['username'], $dbNode['password'], array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => false,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ));
 $pdo->query('SET NAMES utf8');
 $pdo->query('SET SESSION group_concat_max_len=1048576');
@@ -118,24 +123,28 @@ foreach ($headers as $c => $header) {
 }
 
 // 2. Tulis Data Baris
+$seqNumber = 1;
 $rowNo = 2;
-while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-    foreach ($row as $c => $v) {
-        $token = $chosen[$c];
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    foreach ($chosen as $c => $token) {
         $colLetter = Coordinate::stringFromColumnIndex($c + 1);
-        $colType = $REGISTRY[$token]['type'] ?? 'string';
+        $colInfo = $REGISTRY[$token];
 
-        if ($colType === 'numeric') {
-            $sheet->setCellValueExplicit($colLetter . $rowNo, (int)$v, DataType::TYPE_NUMERIC);
+        if ($token === 'row_no') {
+            $sheet->setCellValueExplicit($colLetter . $rowNo, $seqNumber, DataType::TYPE_NUMERIC);
         } else {
-            if ($v === null) {
-                $v = '';
+            $alias = $colInfo['alias'];
+            $v = $row[$alias] ?? '';
+            if ($colInfo['type'] === 'numeric') {
+                $sheet->setCellValueExplicit($colLetter . $rowNo, (int)$v, DataType::TYPE_NUMERIC);
+            } else {
+                $sheet->setCellValueExplicit($colLetter . $rowNo, (string)$v, DataType::TYPE_STRING);
             }
-            $sheet->setCellValueExplicit($colLetter . $rowNo, (string)$v, DataType::TYPE_STRING);
         }
     }
     $sheet->getRowDimension($rowNo)->setRowHeight(20);
     $rowNo++;
+    $seqNumber++;
 }
 
 $lastRowNo = $rowNo - 1;
@@ -191,15 +200,17 @@ if ($lastRowNo >= 2) {
     );
     $sheet->getStyle('A2:' . $lastColLetter . $lastRowNo)->applyFromArray($bodyStyle);
 
-    // Format Khusus Kolom Numerik (Center Align + Thousand Separator)
+    // Format Khusus Kolom Numerik & Row Number (Center Align + Thousand Separator)
     foreach ($chosen as $c => $token) {
         $colType = $REGISTRY[$token]['type'] ?? 'string';
-        if ($colType === 'numeric') {
-            $colLetter = Coordinate::stringFromColumnIndex($c + 1);
+        $colLetter = Coordinate::stringFromColumnIndex($c + 1);
+        if ($colType === 'numeric' || $colType === 'row_number') {
             $sheet->getStyle($colLetter . '2:' . $colLetter . $lastRowNo)
                 ->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-            $sheet->getStyle($colLetter . '2:' . $colLetter . $lastRowNo)
-                ->getNumberFormat()->setFormatCode('#,##0');
+            if ($colType === 'numeric') {
+                $sheet->getStyle($colLetter . '2:' . $colLetter . $lastRowNo)
+                    ->getNumberFormat()->setFormatCode('#,##0');
+            }
         }
     }
 }

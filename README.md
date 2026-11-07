@@ -58,35 +58,36 @@ Ikuti 4 langkah mudah berikut:
 
 ---
 
-## 📋 Daftar Kolom Laporan (20 Kolom)
+## 📋 Daftar Kolom Laporan (21 Kolom)
 
-### 1. Data Katalog Buku (11 Kolom)
+### 1. Data Katalog Buku (12 Kolom)
 | No | Nama Kolom | Keterangan Isi Kolom |
 |:--:|---|---|
-| 1 | **Judul** | Judul utama dan anak judul buku |
-| 2 | **Pengarang** | Nama-nama penulis atau pengarang buku |
-| 3 | **Penerbit** | Nama perusahaan atau lembaga yang menerbitkan buku |
-| 4 | **Tahun Terbit** | Tahun buku diterbitkan |
-| 5 | **Tempat Terbit** | Kota tempat buku diterbitkan |
-| 6 | **ISBN/ISSN** | Nomor standar buku atau terbitan berseri |
-| 7 | **Nomor Klasifikasi** | Nomor klasifikasi subjek buku (misal: 005 atau 2X1) |
-| 8 | **Nomor Panggil** | Nomor panggil buku pada label punggung buku |
-| 9 | **Edisi** | Keterangan cetakan atau edisi buku |
-| 10 | **Bahasa** | Bahasa yang digunakan di dalam buku |
-| 11 | **GMD** | Bentuk media buku (misal: Text, Audio, Visual) |
+| 1 | **No.** | Nomor urut baris data (1, 2, 3...) |
+| 2 | **Judul** | Judul utama dan anak judul buku |
+| 3 | **Pengarang** | Nama-nama penulis atau pengarang buku |
+| 4 | **Penerbit** | Nama perusahaan atau lembaga yang menerbitkan buku |
+| 5 | **Tahun Terbit** | Tahun buku diterbitkan |
+| 6 | **Tempat Terbit** | Kota tempat buku diterbitkan |
+| 7 | **ISBN/ISSN** | Nomor standar buku atau terbitan berseri |
+| 8 | **Nomor Klasifikasi** | Nomor klasifikasi subjek buku (misal: 005 atau 2X1) |
+| 9 | **Nomor Panggil** | Nomor panggil buku pada label punggung buku |
+| 10 | **Edisi** | Keterangan cetakan atau edisi buku |
+| 11 | **Bahasa** | Bahasa yang digunakan di dalam buku |
+| 12 | **GMD** | Bentuk media buku (misal: Text, Audio, Visual) |
 
 ### 2. Data Stok dan Ketersediaan Fisik Buku (9 Kolom)
 | No | Nama Kolom | Keterangan Isi Kolom |
 |:--:|---|---|
-| 12 | **Total Eksemplar** | Jumlah seluruh fisik buku yang dimiliki perpustakaan |
-| 13 | **Tersedia di Rak** | Jumlah buku yang ada di rak dan siap dipinjam pemustaka |
-| 14 | **Sedang Dipinjam** | Jumlah buku yang saat ini sedang dipinjam oleh pemustaka |
-| 15 | **Rusak/Hilang/Khusus** | Jumlah buku yang rusak, hilang, atau hanya dibaca di tempat |
-| 16 | **Daftar Barcode Eksemplar** | Seluruh nomor barcode eksemplar buku dipisah titik koma (`; `) |
-| 17 | **Lokasi Rak** | Lokasi atau ruangan tempat buku disimpan |
-| 18 | **Tipe Koleksi** | Jenis koleksi buku (misal: Buku Teks, Referensi, Tandon) |
-| 19 | **Status Eksemplar** | Status kondisi fisik buku |
-| 20 | **Kode Inventaris** | Nomor inventaris fisik buku |
+| 13 | **Total Eksemplar** | Jumlah seluruh fisik buku yang dimiliki perpustakaan |
+| 14 | **Tersedia di Rak** | Jumlah buku yang ada di rak dan siap dipinjam pemustaka |
+| 15 | **Sedang Dipinjam** | Jumlah buku yang saat ini sedang dipinjam oleh pemustaka |
+| 16 | **Rusak/Hilang/Khusus** | Jumlah buku yang rusak, hilang, atau hanya dibaca di tempat |
+| 17 | **Daftar Barcode Eksemplar** | Seluruh nomor barcode eksemplar buku dipisah titik koma (`; `) |
+| 18 | **Lokasi Rak** | Lokasi atau ruangan tempat buku disimpan |
+| 19 | **Tipe Koleksi** | Jenis koleksi buku (misal: Buku Teks, Referensi, Tandon) |
+| 20 | **Status Eksemplar** | Status kondisi fisik buku |
+| 21 | **Kode Inventaris** | Nomor inventaris fisik buku |
 
 ---
 

@@ -41,7 +41,7 @@ while ($status_d = $status_q->fetch_row()) {
 }
 
 // Pisahkan kolom untuk visual grouping yang rapi (Opsi 1: Satu Baris per Judul Koleksi)
-$biblio_tokens = ['title', 'authors', 'publisher', 'publish_year', 'publish_place', 'isbn_issn', 'classification', 'call_number', 'edition', 'language', 'gmd'];
+$biblio_tokens = ['row_no', 'title', 'authors', 'publisher', 'publish_year', 'publish_place', 'isbn_issn', 'classification', 'call_number', 'edition', 'language', 'gmd'];
 $item_tokens   = ['total_items', 'available_items', 'loaned_items', 'other_items', 'item_codes', 'locations', 'coll_types', 'item_statuses', 'inventory_codes'];
 ?>
 
@@ -92,7 +92,7 @@ $item_tokens   = ['total_items', 'available_items', 'loaned_items', 'other_items
                                 <?php if (isset($REGISTRY[$token])): ?>
                                 <label class="column-item custom-control custom-checkbox">
                                     <input type="checkbox" name="columns[]" value="<?= $token ?>" class="custom-control-input col-chk" checked>
-                                    <span class="custom-control-label"><?= $REGISTRY[$token]['label'] ?></span>
+                                    <span class="custom-control-label"><?= $token === 'row_no' ? __('Nomor Urut (No.)') : $REGISTRY[$token]['label'] ?></span>
                                 </label>
                                 <?php endif; ?>
                             <?php endforeach; ?>

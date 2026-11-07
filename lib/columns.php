@@ -14,6 +14,9 @@ if (!function_exists('__')) {
 }
 
 $REGISTRY = array(
+    // 0. Kolom Nomor Urut
+    'row_no'          => array('label' => __('No.'), 'sql' => null, 'alias' => 'row_no', 'type' => 'row_number', 'width' => 6),
+
     // 1. Kolom Bibliografi / Katalog
     'title'           => array('label' => __('Judul'), 'sql' => 'b.title', 'alias' => 'title', 'type' => 'string', 'width' => 42),
     'authors'         => array('label' => __('Pengarang'), 'sql' => 'au.author_names', 'alias' => 'authors', 'type' => 'string', 'width' => 28),
@@ -99,7 +102,9 @@ function buildSelect(array $chosen): string
     $parts = array();
     foreach ($REGISTRY as $token => $col) {
         if (in_array($token, $chosen, true)) {
-            $parts[] = $col['sql'] . ' AS ' . $col['alias'];
+            if (!empty($col['sql'])) {
+                $parts[] = $col['sql'] . ' AS ' . $col['alias'];
+            }
         }
     }
     return implode(', ', $parts);
